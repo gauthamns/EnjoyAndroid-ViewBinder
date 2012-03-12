@@ -23,12 +23,24 @@ public class DefaultActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
+		// managedQuery takes care of the lifecycle of the cursor.
+		// it will close the cursor itself.
+		// However, the use of managedQuery is discouraged and Loaders are now
+		// the prefered way of loading data in activity. It is a topic for the 
+		// future.
 		Cursor cursor = managedQuery(ClubCP.CONTENT_URI, null, null, null, null);
 
+		// adapter to show the data. Go through android docs about SimpleCursorAdapter.
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(
 				getApplicationContext(), R.layout.club_row, cursor, UI_BINDING_FROM,
 				UI_BINDING_TO);
+		
+		// We set the view binder for the adapter to our own CustomViewBinder.
+		// The code for the custom view binder is below.
 		adapter.setViewBinder(new CustomViewBinder());
+		
+		// Provides the cursor for the list view. The list view should be defined
+		// in main.xml
 		setListAdapter(adapter);
 	}
 	
