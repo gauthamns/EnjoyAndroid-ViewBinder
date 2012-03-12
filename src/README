@@ -1,0 +1,2 @@
+An example android app to show how to use the ViewBinder to customize
+how we show data obtained from DB through SimpleCursorAdapter.
