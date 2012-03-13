@@ -59,6 +59,15 @@ public class DefaultActivity extends ListActivity {
 				if (is_star != 1) {
 					// set the visibility of the view to GONE
 					view.setVisibility(View.GONE);
+				} else {
+					/*
+					 *  Otherwise set the view to be visible.
+					 *  You might ask that the view is visible by default so why we should
+					 *  set the visibility explicitly. Android system reuses the list
+					 *  rows so when it reuses any row which has Visibility gone to this row,
+					 *  the visibility will still be gone. So we need to.  
+					 */
+					view.setVisibility(View.VISIBLE);
 				}
 				return true;
 			}
